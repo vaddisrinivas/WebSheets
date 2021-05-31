@@ -14,7 +14,7 @@ properties:
                 icon:  "{{ menu_icon }}"
                 title:  "{{  menu_item.split("_")[1].capitalize()  }}"
           {% endfor  %}
-      title: Srinivas Vaddi   
+      title: {{  title }} 
       header: 
         color: "{{  all_layout_config.header_color }}"
       sider: 
@@ -63,7 +63,7 @@ areas:
             type: Divider
             properties:
               orientation:  center
-              title: {{ title.capitalize() }} 
+              title: "~~  {{ title.capitalize() }}  ~~" 
           {% block home_content %}
           {% endblock %}            
   footer:
