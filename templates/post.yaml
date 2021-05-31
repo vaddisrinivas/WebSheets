@@ -151,7 +151,7 @@
           - id: block_id
             type: Comment
             layout:
-              span: 5
+              span: 3
             style: 
               paddingLeft: 1%
               fontWeight: 600
@@ -293,7 +293,7 @@
           - id: block_id
             type: Comment
             layout:
-              span: 5
+              span: 3
             style: 
               paddingLeft: 1%
               fontWeight: 600
