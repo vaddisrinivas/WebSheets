@@ -117,8 +117,8 @@
               style:
                   textAlign: left
               blocks:
-{% for tagname,posts in all_featured.items() %}
-{% for post in posts %}              
+        {% for tagname,posts in all_featured.items() %}
+        {% for post in posts %}    
               - id: list_box
                 type: Box
                 style:
@@ -140,23 +140,49 @@
                       textDecoration: underline
                     properties:
                       orientation:  center
-                      title: "{{ post.date.strftime('%Y/%m/%d') }}"
+                      title: {{ post.date.strftime('%Y/%m/%d') }}
 
                   - id: block_id
                     type: Card
                     layout:
-                      span: 15
+                      span: 16
                     properties:
                       hoverable: true
-                      inner: true
-                      title: "{{ tagname }} ⇢{{ post.title }}"
+                      # inner: true
+                      size: small
+                      title: {{ post.title }}
                       headerStyle:
+                        fontSize: 1.2em
+                        background: "#1e1e1e"
+                        color: "#fff"
                         textDecoration: underline
                       bodyStyle:
                         background: '#F4F2F2'
                     style:
+                      textAlign: left
                       # border: '0.25px dashed #3b444b'
-                      boxShadow: "-1px 3px 7px 1px rgba(204,204,255,1.0);"
+                      boxShadow: "-1px 3px 7px 1px rgba(204,184,255,1.0);"
+                    areas:
+                      extra:
+                        blocks:
+                      {% if (post["more"]|string).strip() !="nan" %}
+                            - id: block_id
+                              type: Button
+                              layout:
+                                span: 3
+                              style:
+                                paddingBottom: 0.2%
+                                # color: "#1e1e1e"
+                              properties:
+                                # hideTitle: true
+                                href: {{(post["more"]|string).strip()}}
+                                icon: ExportOutlined
+                                # shape: round
+                                size: small
+                                title: Read More!
+                                type: link        
+                      {% endif %}
+
                     blocks:
               {% for about,content in post["abouts"].items() %}      
                     - id: tags
@@ -167,7 +193,7 @@
                         textAlign: right
                         paddingRight: 5px
                       properties:
-                        content: {{about}} 
+                        content: {{about.capitalize()}} 
                     - id: tags
                       type: Box
                       layout:
@@ -179,9 +205,8 @@
                       style:
                         textAlign: left                  
                       properties:
-                        content: {{content}}
+                        content: {{content.capitalize()}}
               {% endfor %}
-
                     - id: tags
                       type: Span
                       layout:
@@ -203,43 +228,12 @@
                         textAlign: left                  
                       properties:
                         content: 
-                          "{{post.content}}"
-              {% if read_more %}
-                    - id: block_id
-                      type: Button
-                      layout:
-                        span: 3
-                      style:
-                        paddingBottom: 0.2%
-                      properties:
-                        # hideTitle: true
-                        href: https://ajetavya.com
-                        icon: ExportOutlined
-                        shape: round
-                        size: large
-                        title: Read More!
-                        type: link        
-              {% endif %}
-              {% if comment_yes %}
-                  - id: block_id
-                    type: Comment
-                    layout:
-                      span: 5
-                    style: 
-                      paddingLeft: 1%
-                      fontWeight: 600
-                    properties:
-                      author: Srinivas
-                      avatar:
-                        color: '#f5222d'
-                        content: SV
-                      content: I was really crazy that day
-                      datetime: Fed, 2021
-              {% endif %}
+                          "{{post.content.capitalize()}}"
+                    
                   - id: block_id
                     type: Box
                     layout: 
                       span: 2 
-{% endfor %}
-{% endfor %}
-{% endblock %}
+              {% endfor %}  
+        {% endfor %}
+        {% endblock %}
