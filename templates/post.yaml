@@ -1,0 +1,126 @@
+{% extends "layout.yaml" %}
+{% block home_content %}
+{% for post in posts %}
+      - id: list_box
+        type: Box
+        style:
+            marginBottom: 1%
+        blocks:
+        - id: first
+          type: Box
+          properties:
+            bordered: false
+
+          blocks:
+          - id: block_id
+            type: Divider
+            layout: 
+              span: 4
+            style:
+              color: '#89c4f4'
+              # textColor: 'red'
+              textDecoration: underline
+            properties:
+              orientation:  center
+              title: {{ post.date.strftime('%Y/%m/%d') }}
+
+          - id: block_id
+            type: Card
+            layout:
+              span: 15
+            properties:
+              hoverable: true
+              inner: true
+              title: {{ post.title.capitalize() }}
+              headerStyle:
+                textDecoration: underline
+              bodyStyle:
+                background: '#F4F2F2'
+            style:
+              # border: '0.25px dashed #3b444b'
+              boxShadow: "-1px 3px 7px 1px rgba(204,204,255,1.0);"
+            blocks:
+      {% for about,content in post["abouts"].items() %}      
+            - id: tags
+              type: Span
+              layout:
+                span: 3
+              style:
+                textAlign: right
+                paddingRight: 5px
+              properties:
+                content: {{about.capitalize()}} 
+            - id: tags
+              type: Box
+              layout:
+                span: 1
+            - id: tags
+              type: Span
+              layout:
+                span: 20
+              style:
+                textAlign: left                  
+              properties:
+                content: {{content.capitalize()}}
+      {% endfor %}
+
+            - id: tags
+              type: Span
+              layout:
+                span: 3
+              style:
+                textAlign: right
+                paddingRight: 5px
+              properties:
+                content: 'Info:'
+            - id: tags
+              type: Box
+              layout:
+                span: 1
+            - id: tags
+              type: Paragraph
+              layout:
+                span: 20
+              style:
+                textAlign: left                  
+              properties:
+                content: 
+                  "{{post.content.capitalize()}}"
+      {% if read_more %}
+            - id: block_id
+              type: Button
+              layout:
+                span: 3
+              style:
+                paddingBottom: 0.2%
+              properties:
+                # hideTitle: true
+                href: https://ajetavya.com
+                icon: ExportOutlined
+                shape: round
+                size: large
+                title: Read More!
+                type: link        
+      {% endif %}
+      {% if comment_yes %}
+          - id: block_id
+            type: Comment
+            layout:
+              span: 5
+            style: 
+              paddingLeft: 1%
+              fontWeight: 600
+            properties:
+              author: Srinivas
+              avatar:
+                color: '#f5222d'
+                content: SV
+              content: I was really crazy that day
+              datetime: Feb, 2021
+      {% endif %}
+          - id: block_id
+            type: Box
+            layout: 
+              span: 2 
+      {% endfor %}
+      {% endblock %}

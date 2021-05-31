@@ -1,0 +1,6 @@
+#!/bin/sh
+while [ true ]
+do
+    cd /home/node/app/WebSheets; python WebSheetsGen.py
+    sleep $CRON_TIME_SECS
+done

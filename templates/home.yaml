@@ -1,0 +1,245 @@
+{% extends "lowdefy.yaml" %}
+{% block home_content %}
+            - id: block_id
+              type: Divider
+              properties:
+                orientation:  center
+                title: Me
+            - id: content_card
+              type: Box
+              style:
+                borderBottom: '1px dotted black'
+              blocks:
+              - id: block_id
+                type: Img
+                layout:
+                  span: 3
+                properties:
+                  src: {{ all_layout_config.top_intro_image_url }}
+                  alt: {{ all_layout_config.top_intro_image_alt}}
+                  decoding: async
+                  # height: 250
+                  loading: eager
+                  style:
+                    textAlign: left
+                    borderRadius: 2px
+                    border: 1px dotted black
+                    objectFit: cover
+                    width: 150px;
+                    max-width: 100%;
+                    height: 150px;
+                    max-height: 80%;
+              - id: blank
+                type: Box
+                layout:
+                  span: 1
+              - id: Aboutme
+                type: Box
+                layout:
+                  span: 14
+                style:
+                  paddingRight: 2% 
+                  marginLeft: 0%
+                blocks:
+                - id: top_intro_about_title
+                  type: Title
+                  # layout:
+                  #   span: 0
+                  properties:
+                    content: "{{  all_layout_config.top_intro_about_title }}"
+                    level: 3
+                    mark: true
+                    underline: true
+                  style:
+                    paddingTop: 1% 
+                    textAlign: left;
+                - id: Description
+                  type: Paragraph
+                  # layout:
+                  #   span: 15
+                  style:
+                    paddingTop: 1% 
+                    textAlign: left;
+                    justify: left;
+                  properties:
+                    content: >+
+                      "{{  all_layout_config.top_intro_description }}"  
+                    strong: true
+              - id: tags
+                type: Paragraph
+                layout:
+                  span: 6
+                style:
+                  textAlign: left                  
+                properties:
+                  content: 
+                    "{{  all_layout_config.top_intro_site_heatmap }}"
+            - id: block_id
+              type: Divider
+              properties:
+                orientation:  center
+                title: Social 
+            - id: footer
+              type: Box
+              justify: center
+              style:
+                textAlign: center;
+
+                # paddingTop: 0.1%
+                # margin: Top:
+              align: middle
+              blocks:   
+            {% for social,link in all_layout_config["social"].items() %}
+              - id: {{ social.split('_')[1] ~ social.split('_')[2]   }}
+                type: Button
+                layout:
+                  span: 3
+                style:
+                  paddingBottom: 0.2%
+                properties:
+                  # hideTitle: true
+                  href: "{{  all_layout_config["social"][social] }}"
+                  icon: {{social.split('_')[1].capitalize()  ~ "Outlined" }}
+                  shape: round
+                  size: large
+                  title: "{{ social.split('_')[2].capitalize() }}"
+                  type: link
+            {% endfor %}
+            - id: block_id
+              type: Divider
+              properties:
+                orientation:  center
+                title: Latest/Featured posts!
+            - id: main_card
+              type: Box
+              properties:
+                inner: true
+              style:
+                  textAlign: left
+              blocks:
+{% for tagname,posts in all_featured.items() %}
+{% for post in posts %}              
+              - id: list_box
+                type: Box
+                style:
+                    marginBottom: 1%
+                blocks:
+                - id: first
+                  type: Box
+                  properties:
+                    bordered: false
+
+                  blocks:
+                  - id: block_id
+                    type: Divider
+                    layout: 
+                      span: 4
+                    style:
+                      color: '#89c4f4'
+                      # textColor: 'red'
+                      textDecoration: underline
+                    properties:
+                      orientation:  center
+                      title: "{{ post.date.strftime('%Y/%m/%d') }}"
+
+                  - id: block_id
+                    type: Card
+                    layout:
+                      span: 15
+                    properties:
+                      hoverable: true
+                      inner: true
+                      title: "{{ tagname }} ⇢{{ post.title }}"
+                      headerStyle:
+                        textDecoration: underline
+                      bodyStyle:
+                        background: '#F4F2F2'
+                    style:
+                      # border: '0.25px dashed #3b444b'
+                      boxShadow: "-1px 3px 7px 1px rgba(204,204,255,1.0);"
+                    blocks:
+              {% for about,content in post["abouts"].items() %}      
+                    - id: tags
+                      type: Span
+                      layout:
+                        span: 3
+                      style:
+                        textAlign: right
+                        paddingRight: 5px
+                      properties:
+                        content: {{about}} 
+                    - id: tags
+                      type: Box
+                      layout:
+                        span: 1
+                    - id: tags
+                      type: Span
+                      layout:
+                        span: 20
+                      style:
+                        textAlign: left                  
+                      properties:
+                        content: {{content}}
+              {% endfor %}
+
+                    - id: tags
+                      type: Span
+                      layout:
+                        span: 3
+                      style:
+                        textAlign: right
+                        paddingRight: 5px
+                      properties:
+                        content: 'Info:'
+                    - id: tags
+                      type: Box
+                      layout:
+                        span: 1
+                    - id: tags
+                      type: Paragraph
+                      layout:
+                        span: 20
+                      style:
+                        textAlign: left                  
+                      properties:
+                        content: 
+                          "{{post.content}}"
+              {% if read_more %}
+                    - id: block_id
+                      type: Button
+                      layout:
+                        span: 3
+                      style:
+                        paddingBottom: 0.2%
+                      properties:
+                        # hideTitle: true
+                        href: https://ajetavya.com
+                        icon: ExportOutlined
+                        shape: round
+                        size: large
+                        title: Read More!
+                        type: link        
+              {% endif %}
+              {% if comment_yes %}
+                  - id: block_id
+                    type: Comment
+                    layout:
+                      span: 5
+                    style: 
+                      paddingLeft: 1%
+                      fontWeight: 600
+                    properties:
+                      author: Srinivas
+                      avatar:
+                        color: '#f5222d'
+                        content: SV
+                      content: I was really crazy that day
+                      datetime: Fed, 2021
+              {% endif %}
+                  - id: block_id
+                    type: Box
+                    layout: 
+                      span: 2 
+{% endfor %}
+{% endfor %}
+{% endblock %}

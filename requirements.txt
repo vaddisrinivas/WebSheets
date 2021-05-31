@@ -1,0 +1,8 @@
+pyyaml
+pandas
+xlrd
+openpyxl
+Jinja2
+gdown
+pytz
+requests

@@ -1,0 +1,96 @@
+id: "{{  title }}"
+type: PageSiderMenu
+properties:
+      breadcrumb:
+        list: []
+      menu:
+          theme: "{{  all_layout_config.menu_theme }}"
+          links:
+          {% for menu_item,menu_icon in all_layout_config["menuitem"].items() %}
+            - id: "{{ menu_item }}"
+              type: MenuLink
+              pageId:  "{{ menu_item.split("_")[1] }}"
+              properties:
+                icon:  "{{ menu_icon }}"
+                title:  "{{  menu_item.split("_")[1].capitalize()  }}"
+          {% endfor  %}
+      title: Srinivas Vaddi   
+      header: 
+        color: "{{  all_layout_config.header_color }}"
+      sider: 
+        color: "{{  all_layout_config.sider_color }}"
+        initialCollapsed: false 
+      loading:
+        type: SkeletonParagraph
+        properties:
+          lines: 1           
+      logo:
+        src: "{{  all_layout_config.logo_url }}"
+        alt: "{{  all_layout_config.logo_alt_text }}"
+
+areas:
+  content:
+    justify: center
+    style:
+      marginLeft: 1%
+      marginRight: 3%
+      maxWidth: 96%
+      align: center
+      textAlign: center;
+      overflow: auto
+    blocks:
+    {% if all_layout_config.top_alert.strip() == "yes" %}
+      - id: block_id
+        type: Alert
+        properties:
+          message: "{{  all_layout_config.top_alert_alert_text }} {{ all_layout_config.top_alert}}"
+          banner: true
+          closable: true  
+    {% endif %}
+      - id: content_card
+        type: Box
+        style:
+          maxWidth: 100%
+          height: 100%
+          textAlign: center;
+          maxHeight: 100%
+          # borderTop: '1px dotted black'  
+        blocks:
+        - id: empty
+          type: Box
+          blocks:
+          - id: block_id
+            type: Divider
+            properties:
+              orientation:  center
+              title: {{ title.capitalize() }} 
+          {% block home_content %}
+          {% endblock %}            
+  footer:
+          justify: center
+          style:
+          blocks:
+              - id: footer
+                justify: center
+                style:
+                  textAlign: center;
+                type: Paragraph
+                properties:
+                  # disabled: true
+                  # mark: true
+                  strong: true
+                  # type: secondary
+                  content: |
+                    {{ all_layout_config.footer_note}}
+                                  
+              - id: footer
+                justify: center
+                style:
+                  textAlign: center;
+                type: Anchor
+                properties:
+                  icon: RobotOutlined
+                  href: https://lowdefy.com/
+                  newTab: true
+                  strong: true
+                  title: Possible with Lowdefy 🤖        
