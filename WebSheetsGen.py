@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[11]:
+# In[3]:
 
 
 # import yaml
@@ -21,7 +21,7 @@ import requests
 # script defaults
 # excel_location = "Book1.xlsx"
 excel_download_name = "websheets.xlsx"
-url_to_download = os.environ["GOOGLE_SHEETS_URL"]
+url_to_download = 'https://drive.google.com/file/d/1MLKjqVdjHrE8H1hH-nmF4Cd0uBW_dnUH/view?usp=sharing'
 templates_dir="templates/"
 output_dir="output/"
 
@@ -61,36 +61,43 @@ def make_lowdefy(templates_dir,output_dir,excel_loc):
 
     #   update footer with time    
     all_layout_config["footer_note"]="Updated at "+str(datetime.now(timezone('UTC'))).split(".")[0]+"  UTC"
-
     for page in all_layout_config["menuitem"].keys():
         try:
             print("Generating menuitem ",page.split("_")[1].capitalize())
 
             posts=get_jinja_dict(excel_loc,sheet=page.split("_")[1].capitalize())
+            pprint(posts)
             featured=[]
-            
+            pinned=[]
+            count=0
+            all_posts_without_pinned=[]
             for post in posts:
-                abouts={}
-                if str(post["featured"]).strip().lower()=="yes":
-                                    featured.append(post)
+                count+=1
+                abouts={}                        
                 for keys_about in post.keys():
                     if "about_" in keys_about:
-                        abouts.update({keys_about.split("_")[1].capitalize():post[keys_about].capitalize()})
+                        abouts.update({keys_about.split("_")[1]:post[keys_about]})
                     else:
                         continue
                 post.update({"abouts":abouts})
-                all_featured.update({page.split("_")[1].capitalize():featured})
+                if str(post["featured"]).strip().lower()=="yes":
+                                    featured.append(post)
+                if str(post["pinned"]).strip().lower()=="yes":
+                                    pinned.append(post)        
+                else:
+                    all_posts_without_pinned.append(post)
+            all_featured.update({page.split("_")[1].capitalize():featured})
             
             with open(r'{}/post.yaml'.format(templates_dir)) as file:
                 home_list = file.read()
                 print("reading file")
                 j2_template = Environment(loader=FileSystemLoader("templates/")).from_string(home_list)
-                open("{}/{}.yaml".format(output_dir,page.split("_")[1]),"w+").write(j2_template.render(title=page.split("_")[1],all_layout_config=all_layout_config,posts=posts,read_more=False,comment_yes=False)) 
+                open("{}/{}.yaml".format(output_dir,page.split("_")[1]),"w+").write(j2_template.render(title=page.split("_")[1],all_layout_config=all_layout_config,posts=all_posts_without_pinned,pinned=pinned)) 
 
         except Exception as e:
             print("Error",e,"\nDid you forget to include a page which is mentioned in the `menuitems` ?")
             open("{}/{}.yaml".format(output,page.split("_")[1]),"w+")
-
+    pprint(all_featured)
     with open(r'templates/home.yaml') as file:
         home_list = file.read()
         j2_template = Environment(loader=FileSystemLoader("templates/")).from_string(home_list)
