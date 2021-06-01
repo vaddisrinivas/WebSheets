@@ -1,4 +1,8 @@
 # WebSheets
+
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/imvegeta/websheets?style=for-the-badge)
+![GitHub commit checks state](https://img.shields.io/github/checks-status/vaddisrinivas/WebSheets/master?style=for-the-badge)
+
 A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend! 
 
 Lowdefy is an amazing Lowcode framework that allows us to write websites with mere YAML!
