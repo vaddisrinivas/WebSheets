@@ -47,7 +47,8 @@ services:
   - optional More button for each post 
   - comment options for each post to 
   - thoughts template
-
+  - "other" items for every post(similar to about)
+  
 - Spreadsheets template - 
   - documenting 
   - customization
@@ -60,6 +61,8 @@ services:
 - Portainer Template
 - Pulling Spreadsheet from nextcloud/s3/minio/local/
 - n8n workflow to update website  
+- "Auto" span for the given fields in social fields
+
 ## How does this project work?
 It takes a google-sheet that is shared publically and generates websites based on that.
 However this excel sheet has to follow a very easy to create template that can be found here -> https://drive.google.com/file/d/1MLKjqVdjHrE8H1hH-nmF4Cd0uBW_dnUH/view?usp=sharing
