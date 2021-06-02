@@ -12,4 +12,4 @@ WORKDIR /home/node/app
 
 RUN git clone https://github.com/vaddisrinivas/WebSheets.git && cd WebSheets;pip3 install -r requirements.txt; npm install lowdefy@latest npx; chmod 777 base-cron 
 
-ENTRYPOINT  cd WebSheets; ls -lart;mkdir output; python3 WebSheetsGen.py;bash base-cron & cd output/; npx lowdefy@latest dev
+ENTRYPOINT  cd WebSheets; ls -lart;mkdir output; python3 websheets_gen.py;bash base-cron & cd output/; npx lowdefy@latest dev
