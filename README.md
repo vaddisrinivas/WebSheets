@@ -76,6 +76,6 @@ services:
 
 ## How does this project work?
 It takes a google-sheet that is shared publically and generates websites based on that.
-However this excel sheet has to follow a very easy to create template that can be found here -> https://docs.google.com/spreadsheets/d/110-t6737J8Nz9iIFTNRDTJInLzJ8b7QtnN4wxnJO2jk/edit?usp=sharing
+However this excel sheet has to follow a very easy to create template that can be found here -> https://drive.google.com/file/d/17YiHNPSh8STfk1d6ZBjkvstJ_ZHLrrSd/view?usp=sharing
 
 Jinja is used to render this data via the Lowdefy templates bundled here.
