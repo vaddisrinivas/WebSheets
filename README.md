@@ -6,11 +6,8 @@ A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend!
 ![GitHub commit checks state](https://img.shields.io/github/checks-status/vaddisrinivas/WebSheets/master?style=for-the-badge&logo=github)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vaddisrinivas/WebSheets?style=for-the-badge)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/vaddisrinivas/WebSheets?style=for-the-badge)
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/imvegeta/websheets?style=for-the-badge&logo=docker)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/imvegeta/websheets?style=for-the-badge&logo=docker)
+![Docker Build Status](https://img.shields.io/github/workflow/status/vaddisrinivas/WebSheets/Docker?style=for-the-badge&logo=docker)
 ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/imvegeta/websheets?style=for-the-badge&logo=docker)
-![Docker Pulls](https://img.shields.io/docker/pulls/imvegeta/websheets?style=for-the-badge&logo=docker)
-
 ---
 ### New Features (06/21/2021)
 - Added Markdown, MarkdownWithCode, DangerousMarkdown  Blocks support!
