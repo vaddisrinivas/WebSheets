@@ -17,7 +17,6 @@
                 properties:
                   src: {{ all_layout_config.top_intro_image_url }}
                   alt: {{ all_layout_config.top_intro_image_alt}}
-                  decoding: async
                   # height: 250
                   loading: eager
                   style:
@@ -150,7 +149,7 @@
                       hoverable: true
                       # inner: true
                       size: small
-                      title: {{ post.title }}
+#                       title: {{ post.title }}
                       headerStyle:
                         fontSize: 1.2em
                         background: "#1e1e1e"
@@ -163,6 +162,37 @@
                       # border: '0.25px dashed #3b444b'
                       boxShadow: "-1px 3px 7px 1px rgba(204,184,255,1.0);"
                     areas:
+                      title:
+                        blocks:
+                        {% if post.icon %}
+                        - id: block_id
+                          type: Img
+                          properties:
+                              src: >-
+                                {{ post.icon_source}}
+                              alt: Chess
+                              crossorigin: anonymous
+                              height: 24
+                              loading: eager
+                              width: 24
+                          layout:
+                            span: 2
+                          style:
+                             filter: invert(1)
+                          {% endif %}
+
+                        - id: title
+                          type: Title
+                          layout:
+                            span: 10
+                          style:
+                            fontSize: 1.2em
+                            background: "#1e1e1e"                  
+                          properties:
+                            color: "#fff"
+                            content: "{{ post.title }}"
+                            level: 4
+                    
                       extra:
                         blocks:
                       {% if (post["more"]|string).strip() !="nan" %}

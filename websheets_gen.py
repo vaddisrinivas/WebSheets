@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[16]:
 
 
 #!/usr/bin/env python
@@ -14,7 +14,6 @@ This script aims to work for creation of a lowdefy yaml from excel sheet
 # import json
 import os
 import sys
-
 from datetime import datetime
 from pprint import pprint
 
@@ -29,13 +28,16 @@ import gdown
 EXCEL_LOCAL_NAME = "websheets.xlsx"
 
 # default WebSheet to get values from, if GOOGLE_SHEETS_URL env is not set
-DEFAULT_EXCEL_URL = "https://drive.google.com/file/d/1B3Ij5E1oboOphkFOB_lFF8rMUF-T_-Sj/"
+DEFAULT_EXCEL_URL = "https://drive.google.com/file/d/17YiHNPSh8STfk1d6ZBjkvstJ_ZHLrrSd/view?usp=sharing"
 
 # gets GOOGLE_SHEETS_URL env variable or defaults to the above LINK
 URL_TO_DOWNLOAD = os.getenv("GOOGLE_SHEETS_URL", DEFAULT_EXCEL_URL)
 
 # root folder for all templates
 TEMPLATES_DIR = "templates/"
+
+# DEFAULT VAR for title based icon
+ICON_TITLE = "yes"
 
 # root folder for all Lowdefy YAML's
 # or
@@ -71,7 +73,7 @@ def get_jinja_dict(
             try:
                 ret_obj.update({str(row[0]).strip(): str(row[1]).strip()})
             except Exception as error:
-                print(index, error)
+                print("IDENTIFIER", error)
         return ret_obj
     else:
         # rename Pandas columns to lower case
@@ -124,6 +126,23 @@ def make_lowdefy_pages(templates_dir, output_dir, excel_loc):
                         continue
 
                 post.update({"abouts": abouts})
+                pprint(post.keys())
+                if str(post["icon"]) == "nan":
+                    print("No image for post", post["title"], page)
+                    post["icon"] = False
+                elif str(post["icon"]) != "nan" and str(post["icon"]).strip() != "" and str(post["icon"]) == ICON_TITLE:
+                    #                     call function
+                    print("Default icon chosen")
+#                     post["icon_source"] = post["icon"]
+#                     post["icon"] = True
+                    post["icon"] = False
+
+                elif str(post["icon"]) != "nan" and str(post["icon"]).strip():
+                    print("Default icon chosen")
+                    post["icon_source"] = post["icon"]
+                    post["icon"] = True
+                else:
+                    post["icon"] = False
 
                 if str(post["featured"]).strip().lower() == "yes":
                     featured.append(post)

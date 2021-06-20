@@ -53,16 +53,35 @@
             areas:
               title:
                 blocks:
+                {% if post.icon %}
+                - id: block_id
+                  type: Img
+                  properties:
+                      src: >-
+                        {{ post.icon_source}}
+                      alt: Chess
+                      crossorigin: anonymous
+                      decoding: async
+                      height: 24
+                      loading: eager
+                      width: 24
+                  layout:
+                    span: 2
+                  style:
+                     filter: invert(1)
+                  {% endif %}
                 - id: title
                   type: Title
+                  layout:
+                    span: 10
                   style:
                     fontSize: 1.2em
                     background: "#1e1e1e"                  
                   properties:
                     color: "#fff"
                     content: "{{ post.title }}"
-                    level: 4                  
-
+                    level: 4
+                                   
               extra:
                 blocks:
                     - id: block_id
@@ -77,7 +96,8 @@
 
 
             blocks:
-      {% for about,content in post["abouts"].items() %}      
+      {% for about,content in post["abouts"].items() %}    
+      {% if (content|string).strip()!="nan" %}
             - id: tags
               type: Span
               layout:
@@ -99,6 +119,7 @@
                 textAlign: left                  
               properties:
                 content: "{{content}}"
+        {% endif %}
       {% endfor %}
             - id: tags
               type: Span
@@ -216,7 +237,7 @@
               hoverable: true
               # inner: true
               size: small
-              title: "{{ post.title }}"
+#               title: "{{ post.title }}"
               headerStyle:
                 fontSize: 1.2em
                 background: "#1e1e1e"
@@ -229,6 +250,38 @@
               # border: '0.25px dashed #3b444b'
               boxShadow: "-1px 3px 7px 1px rgba(204,184,255,1.0);"
             areas:
+              title:
+                blocks:
+                {% if post.icon %}
+                - id: block_id
+                  type: Img
+                  properties:
+                      src: >-
+                        {{ post.icon_source}}
+                      alt: Chess
+                      crossorigin: anonymous
+                      decoding: async
+                      height: 24
+                      loading: eager
+                      width: 24
+                  layout:
+                    span: 2
+                  style:
+                     filter: invert(1)
+                  {% endif %}
+                  
+                - id: title
+                  type: Title
+                  layout:
+                    span: 10
+                  style:
+                    fontSize: 1.2em
+                    background: "#1e1e1e"                  
+                  properties:
+                    color: "#fff"
+                    content: "{{ post.title }}"
+                    level: 4
+            
               extra:
                 blocks:
               {% if (post["more"]|string).strip() !="nan" %}
@@ -250,7 +303,8 @@
               {% endif %}
 
             blocks:
-      {% for about,content in post["abouts"].items() %}      
+      {% for about,content in post["abouts"].items() %}   
+        {% if (content|string).strip()!="nan" %}
             - id: tags
               type: Span
               layout:
@@ -272,6 +326,7 @@
                 textAlign: left                  
               properties:
                 content: "{{content}}"
+        {% endif %}
       {% endfor %}
             - id: tags
               type: Span
