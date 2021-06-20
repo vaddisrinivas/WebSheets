@@ -5,7 +5,6 @@ A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend!
 ![Lowdefy Version](https://img.shields.io/static/v1?label=Lowdefy&message=3.18.0&color=green&style=for-the-badge&logo=npm)
 ![GitHub commit checks state](https://img.shields.io/github/checks-status/vaddisrinivas/WebSheets/master?style=for-the-badge&logo=github)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vaddisrinivas/WebSheets?style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/vaddisrinivas/WebSheets?style=for-the-badge)
 ![Docker Build Status](https://img.shields.io/github/workflow/status/vaddisrinivas/WebSheets/Docker?style=for-the-badge&logo=docker)
 ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/imvegeta/websheets?style=for-the-badge&logo=docker)
 ---
