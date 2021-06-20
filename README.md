@@ -12,7 +12,7 @@ A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend!
 ![Docker Pulls](https://img.shields.io/docker/pulls/imvegeta/websheets?style=for-the-badge&logo=docker)
 
 ---
-### New Features (06/20/2021)
+### New Features (06/21/2021)
 - Added Markdown, MarkdownWithCode, DangerousMarkdown  Blocks support!
 - Improved Templates and made them much modular.
 - Made Excel-template simpler! 
