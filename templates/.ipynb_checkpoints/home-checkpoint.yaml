@@ -176,7 +176,7 @@
                               loading: eager
                               width: 24
                           layout:
-                            span: 2
+                            span: 1
                           style:
                              filter: invert(1)
                           {% endif %}
