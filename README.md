@@ -1,4 +1,4 @@
-# WebSheets
+# WebSheets - DEV
 
 A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend! 
 
