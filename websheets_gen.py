@@ -45,7 +45,7 @@ ICON_TITLE = "yes"
 OUTPUT_DIR = "output/"
 
 # change
-LOWDEFY_VERSION = "3.18.0"
+LOWDEFY_VERSION = "3.23.3"
 
 # all items in "lower" case
 VERTICAL_MENUS = ["layout", "menuitems", "social"]
