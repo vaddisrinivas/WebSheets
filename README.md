@@ -13,7 +13,6 @@ A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend!
 - Improved Templates and made them much modular.
 - Made Excel-template simpler! 
 - bug fixes and improved PyLint
-- Roadmap added [here](https://npm.ajetavya.com/projects/websheets/)
 - [Demo!](https://srinivas.ajetavya.com/) 
 ---
 # What is Lowdefy?
