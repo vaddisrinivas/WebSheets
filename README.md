@@ -1,6 +1,6 @@
 # WebSheets 
 
-A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend! 
+A simple Lowdefy based site generator that uses CMS/Google-Sheets as a backend!
 
 ![Lowdefy Version](https://img.shields.io/static/v1?label=Lowdefy&message=3.23.3&color=green&style=for-the-badge&logo=npm)
 ![GitHub commit checks state](https://img.shields.io/github/checks-status/vaddisrinivas/WebSheets/master?style=for-the-badge&logo=github)
